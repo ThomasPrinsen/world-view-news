@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
@@ -15,15 +14,16 @@ const Index = () => {
     country: 'Italy'
   });
   const [news, setNews] = useState<NewsArticle[]>([]);
+  const [radius, setRadius] = useState(50); // Standaard 50km
   const [isSearching, setIsSearching] = useState(false);
   const [isLoadingNews, setIsLoadingNews] = useState(false);
   const { toast } = useToast();
 
-  const loadNewsForLocation = useCallback(async (lat: number, lon: number) => {
+  const loadNewsForLocation = useCallback(async (lat: number, lon: number, searchRadius: number) => {
     setIsLoadingNews(true);
     try {
-      console.log(`Loading news for coordinates: ${lat}, ${lon}`);
-      const localNews = await NewsService.getLocalNews(lat, lon, 50);
+      console.log(`Loading news for coordinates: ${lat}, ${lon} with radius ${searchRadius}km`);
+      const localNews = await NewsService.getLocalNews(lat, lon, searchRadius);
       setNews(localNews);
       console.log(`Loaded ${localNews.length} news articles`);
     } catch (error) {
@@ -51,7 +51,7 @@ const Index = () => {
         console.log(`Setting location to:`, newLocation);
         
         setCurrentLocation(newLocation);
-        await loadNewsForLocation(newLocation.lat, newLocation.lon);
+        await loadNewsForLocation(newLocation.lat, newLocation.lon, radius);
         
         toast({
           title: "Locatie gevonden",
@@ -87,7 +87,7 @@ const Index = () => {
     };
     
     setCurrentLocation(newLocation);
-    await loadNewsForLocation(lat, lon);
+    await loadNewsForLocation(lat, lon, radius);
     
     toast({
       title: "Nieuwe locatie geselecteerd",
@@ -95,10 +95,15 @@ const Index = () => {
     });
   };
 
+  const handleRadiusChange = (newRadius: number) => {
+    setRadius(newRadius);
+    loadNewsForLocation(currentLocation.lat, currentLocation.lon, newRadius);
+  };
+
   // Laad initieel nieuws voor Rome
   useEffect(() => {
     console.log('Loading initial news for Rome');
-    loadNewsForLocation(currentLocation.lat, currentLocation.lon);
+    loadNewsForLocation(currentLocation.lat, currentLocation.lon, radius);
   }, []); // Only run on mount
 
   return (
@@ -112,6 +117,8 @@ const Index = () => {
             news={news} 
             isLoading={isLoadingNews}
             location={currentLocation.name}
+            radius={radius}
+            onRadiusChange={handleRadiusChange}
           />
         </div>
         
@@ -122,6 +129,8 @@ const Index = () => {
               lat={currentLocation.lat}
               lon={currentLocation.lon}
               zoom={10}
+              radius={radius}
+              news={news}
               onLocationSelect={handleMapClick}
             />
           </div>

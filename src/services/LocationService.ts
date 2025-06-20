@@ -1,4 +1,3 @@
-
 export interface LocationData {
   name: string;
   lat: number;
@@ -8,7 +7,7 @@ export interface LocationData {
 }
 
 export class LocationService {
-  private static readonly API_URL = 'https://api.openstreetmap.org/search';
+  private static readonly API_URL = 'https://nominatim.openstreetmap.org/search';
 
   static async searchLocation(query: string): Promise<LocationData[]> {
     try {

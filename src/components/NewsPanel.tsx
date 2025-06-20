@@ -1,17 +1,19 @@
-
 import React from 'react';
 import { AlertTriangle, Flame, Thermometer, MessageCircle } from 'lucide-react';
 import { NewsArticle } from '@/services/NewsService';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Slider } from '@/components/ui/slider';
 
 interface NewsPanelProps {
   news: NewsArticle[];
   isLoading: boolean;
   location?: string;
+  radius: number;
+  onRadiusChange: (radius: number) => void;
 }
 
-const NewsPanel: React.FC<NewsPanelProps> = ({ news, isLoading, location }) => {
+const NewsPanel: React.FC<NewsPanelProps> = ({ news, isLoading, location, radius, onRadiusChange }) => {
   const getIcon = (category: string) => {
     switch (category) {
       case 'fire':
@@ -33,9 +35,24 @@ const NewsPanel: React.FC<NewsPanelProps> = ({ news, isLoading, location }) => {
         </h2>
         {location && (
           <p className="text-sm text-gray-600 mt-1">
-            Binnen 50km van {location}
+            Binnen {radius}km van {location}
           </p>
         )}
+      </div>
+
+      <div className='p-6 border-b border-gray-200'>
+        <label htmlFor="radius" className="text-sm font-medium text-gray-700">
+          Zoekradius ({radius} km)
+        </label>
+        <Slider
+          id="radius"
+          min={1}
+          max={50}
+          step={1}
+          value={[radius]}
+          onValueChange={(value) => onRadiusChange(value[0])}
+          className="mt-2"
+        />
       </div>
 
       <div className="flex-1 overflow-y-auto">
