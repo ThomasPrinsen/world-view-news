@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import MapComponent from '@/components/MapComponent';
@@ -22,8 +22,10 @@ const Index = () => {
   const loadNewsForLocation = useCallback(async (lat: number, lon: number) => {
     setIsLoadingNews(true);
     try {
+      console.log(`Loading news for coordinates: ${lat}, ${lon}`);
       const localNews = await NewsService.getLocalNews(lat, lon, 50);
       setNews(localNews);
+      console.log(`Loaded ${localNews.length} news articles`);
     } catch (error) {
       console.error('Error loading news:', error);
       toast({
@@ -38,11 +40,16 @@ const Index = () => {
 
   const handleSearch = async (cityName: string) => {
     setIsSearching(true);
+    console.log(`Searching for city: ${cityName}`);
+    
     try {
       const locations = await LocationService.searchLocation(cityName);
+      console.log(`Found ${locations.length} locations for "${cityName}"`);
       
       if (locations.length > 0) {
         const newLocation = locations[0];
+        console.log(`Setting location to:`, newLocation);
+        
         setCurrentLocation(newLocation);
         await loadNewsForLocation(newLocation.lat, newLocation.lon);
         
@@ -53,7 +60,7 @@ const Index = () => {
       } else {
         toast({
           title: "Geen resultaten",
-          description: "Geen locatie gevonden voor deze zoekopdracht.",
+          description: `Geen locatie gevonden voor "${cityName}". Probeer een andere naam.`,
           variant: "destructive",
         });
       }
@@ -70,19 +77,29 @@ const Index = () => {
   };
 
   const handleMapClick = async (lat: number, lon: number) => {
-    setCurrentLocation(prev => ({
-      ...prev,
+    console.log(`Map clicked at: ${lat}, ${lon}`);
+    
+    const newLocation: LocationData = {
+      name: `${lat.toFixed(4)}, ${lon.toFixed(4)}`,
       lat,
       lon,
-      name: `${lat.toFixed(4)}, ${lon.toFixed(4)}`
-    }));
+      country: 'Unknown'
+    };
+    
+    setCurrentLocation(newLocation);
     await loadNewsForLocation(lat, lon);
+    
+    toast({
+      title: "Nieuwe locatie geselecteerd",
+      description: `Coördinaten: ${lat.toFixed(4)}, ${lon.toFixed(4)}`,
+    });
   };
 
   // Laad initieel nieuws voor Rome
-  React.useEffect(() => {
+  useEffect(() => {
+    console.log('Loading initial news for Rome');
     loadNewsForLocation(currentLocation.lat, currentLocation.lon);
-  }, [loadNewsForLocation, currentLocation.lat, currentLocation.lon]);
+  }, []); // Only run on mount
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
