@@ -1,73 +1,233 @@
-# Welcome to your Lovable project
+# World View News 🌍
 
-## Project info
+Een interactieve nieuwsapplicatie die lokale gebeurtenissen en meldingen toont op een interactieve kaart. Gebruikers kunnen zoeken naar specifieke steden, de zoekradius aanpassen, en real-time meldingen bekijken in hun omgeving.
 
-**URL**: https://lovable.dev/projects/7cfc7b5e-b7cf-4aab-a6db-82c3fd56e756
+## ✨ Features
 
-## How can I edit this code?
+### 🗺️ Interactieve Kaart
+- **OpenStreetMap integratie** met Leaflet.js
+- **Vloeiende animaties** bij het inzoomen en verplaatsen
+- **Klikbare kaart** om nieuwe locaties te selecteren
+- **Aanpasbare zoekradius** van 1-50 km met visuele cirkel
 
-There are several ways of editing your application.
+### 🔍 Locatie Zoeken
+- **Stad zoeken** via de zoekbalk in de header
+- **Nominatim API** voor nauwkeurige geocoding
+- **Automatische kaart navigatie** naar gevonden locaties
+- **Toast notificaties** voor feedback
 
-**Use Lovable**
+### 📰 Nieuws & Meldingen
+- **Lokale gebeurtenissen** binnen de geselecteerde radius
+- **Gecategoriseerde meldingen**:
+  - 🔥 **Brand** (rood) - Bosbranden, natuurbranden
+  - ⚠️ **Staking** (geel) - OV-stakingen, protesten
+  - 🌡️ **Weer** (oranje) - Stormwaarschuwingen, hittegolven
+  - 💬 **Algemeen** (blauw) - Evenementen, wegwerkzaamheden
+- **Interactieve pins** op de kaart met popup details
+- **Real-time updates** bij radius wijzigingen
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7cfc7b5e-b7cf-4aab-a6db-82c3fd56e756) and start prompting.
+### 🎨 Moderne UI/UX
+- **Responsive design** voor desktop en mobiel
+- **Shadcn/ui componenten** voor consistente styling
+- **Tailwind CSS** voor moderne styling
+- **Smooth animaties** en hover effecten
+- **Intuïtieve interface** met duidelijke feedback
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Installatie
 
-**Use your preferred IDE**
+### Vereisten
+- Node.js (versie 18 of hoger)
+- npm, yarn, of bun package manager
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Stappen
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. **Clone de repository**
+   ```bash
+   git clone https://github.com/your-username/world-view-news.git
+   cd world-view-news
+   ```
 
-Follow these steps:
+2. **Installeer dependencies**
+   ```bash
+   npm install
+   # of
+   yarn install
+   # of
+   bun install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Start de development server**
+   ```bash
+   npm run dev
+   # of
+   yarn dev
+   # of
+   bun dev
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. **Open de applicatie**
+   - Ga naar `http://localhost:5173` in je browser
+   - De applicatie laadt standaard met Rome als startlocatie
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 📖 Gebruik
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Basis Navigatie
+1. **Zoeken naar een stad**: Gebruik de zoekbalk bovenaan
+2. **Radius aanpassen**: Gebruik de slider in het linkerpaneel
+3. **Kaart interactie**: Klik op de kaart om een nieuwe locatie te selecteren
+4. **Nieuws bekijken**: Bekijk meldingen in het linkerpaneel of klik op pins op de kaart
+
+### Functies
+- **Zoekbalk**: Type een stadnaam en druk op Enter
+- **Radius slider**: Pas de zoekradius aan van 1-50 km
+- **Kaart pins**: Klik op gekleurde pins voor meer details
+- **Popup details**: Bekijk titel en beschrijving van meldingen
+
+## 🏗️ Project Structuur
+
+```
+world-view-news/
+├── src/
+│   ├── components/
+│   │   ├── Header.tsx          # Zoekbalk en navigatie
+│   │   ├── MapComponent.tsx    # Interactieve kaart
+│   │   ├── NewsPanel.tsx       # Nieuws paneel met slider
+│   │   └── ui/                 # Shadcn/ui componenten
+│   ├── pages/
+│   │   ├── Index.tsx           # Hoofdpagina
+│   │   ├── Login.tsx           # Login pagina
+│   │   └── NotFound.tsx        # 404 pagina
+│   ├── services/
+│   │   ├── LocationService.ts  # Geocoding API
+│   │   └── NewsService.ts      # Nieuws data simulatie
+│   ├── hooks/
+│   │   └── use-toast.ts        # Toast notificaties
+│   └── lib/
+│       └── utils.ts            # Utility functies
+├── public/                     # Statische assets
+└── package.json               # Dependencies en scripts
 ```
 
-**Edit a file directly in GitHub**
+## 🔧 Technische Details
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Frontend Stack
+- **React 18** met TypeScript
+- **Vite** voor snelle development en build
+- **Tailwind CSS** voor styling
+- **Shadcn/ui** voor UI componenten
+- **Lucide React** voor iconen
 
-**Use GitHub Codespaces**
+### Kaart & Locatie
+- **Leaflet.js** voor interactieve kaarten
+- **OpenStreetMap** voor kaart tiles
+- **Nominatim API** voor geocoding
+- **Custom markers** met SVG iconen
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### State Management
+- **React Hooks** (useState, useEffect, useCallback)
+- **Local state** voor component data
+- **Props drilling** voor data flow
 
-## What technologies are used for this project?
+### API Integratie
+- **Nominatim** voor locatie zoeken
+- **Mock data** voor nieuws (simulatie)
+- **Error handling** met toast notificaties
 
-This project is built with:
+## 🎨 Customization
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Nieuwe Nieuws Categorieën
+Voeg nieuwe categorieën toe in `src/services/NewsService.ts`:
 
-## How can I deploy this project?
+```typescript
+const categories = ['fire', 'strike', 'weather', 'general', 'new-category'];
+```
 
-Simply open [Lovable](https://lovable.dev/projects/7cfc7b5e-b7cf-4aab-a6db-82c3fd56e756) and click on Share -> Publish.
+### Kaart Styling
+Pas de kaart aan in `src/components/MapComponent.tsx`:
 
-## Can I connect a custom domain to my Lovable project?
+```typescript
+// Verander kaart tiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+})
+```
 
-Yes, you can!
+### Icon Kleuren
+Wijzig kleuren in `src/components/MapComponent.tsx`:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```typescript
+const getIconInfo = (category: string) => {
+  switch (category) {
+    case 'fire':
+      return { svg: '...', color: '#your-color' };
+    // ...
+  }
+};
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🚀 Deployment
+
+### Build voor Productie
+```bash
+npm run build
+# of
+yarn build
+# of
+bun build
+```
+
+### Deploy naar Vercel
+1. Push code naar GitHub
+2. Verbind repository met Vercel
+3. Deploy automatisch
+
+### Deploy naar Netlify
+1. Build de applicatie
+2. Upload `dist/` folder naar Netlify
+3. Configure environment variables
+
+## 🔍 Troubleshooting
+
+### Veelvoorkomende Problemen
+
+**Kaart laadt niet**
+- Controleer internetverbinding
+- Verifieer OpenStreetMap toegang
+
+**Zoeken werkt niet**
+- Controleer Nominatim API status
+- Verifieer CORS instellingen
+
+**Pins verschijnen niet**
+- Controleer console voor errors
+- Verifieer news data structuur
+
+**Styling problemen**
+- Controleer Tailwind CSS configuratie
+- Verifieer shadcn/ui installatie
+
+## 🤝 Bijdragen
+
+1. Fork de repository
+2. Maak een feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit je wijzigingen (`git commit -m 'Add some AmazingFeature'`)
+4. Push naar de branch (`git push origin feature/AmazingFeature`)
+5. Open een Pull Request
+
+## 📝 Licentie
+
+Dit project is gelicenseerd onder de MIT License - zie het [LICENSE](LICENSE) bestand voor details.
+
+## 🙏 Credits
+
+- **OpenStreetMap** voor kaart data
+- **Nominatim** voor geocoding services
+- **Leaflet.js** voor kaart functionaliteit
+- **Shadcn/ui** voor UI componenten
+- **Lucide** voor iconen
+
+## 📞 Contact
+
+Voor vragen of ondersteuning:
+- GitHub Issues: [Project Issues](https://github.com/your-username/world-view-news/issues)
+- Email: thomas05.prinsen@gmail.com
