@@ -186,6 +186,32 @@ bun build
 2. Upload `dist/` folder naar Netlify
 3. Configure environment variables
 
+## 🔮 Toekomstplannen
+
+### 🔹 Technische realisatie
+👉 Experts kunnen de prototypekaart uitwerken met:
+
+- **Real-time koppeling** aan betrouwbare data feeds (bijv. EMSC, lokale verkeers- of rampendiensten).
+- **Mobielvriendelijke implementatie** met caching voor offline gebruik.
+
+### 🔹 Validatie en gebruikerstests
+👉 Organiseer:
+
+- **Grootschaligere tests** met reizigers in diverse contexten (luchthaven, trein, thuis).
+- **Toegankelijkheidstests**: screenreader-compatibiliteit, kleurenblindheid, taalopties.
+
+### 🔹 Data en ethiek
+👉 Stel heldere richtlijnen op voor:
+
+- **Gegevensbescherming** (geen tracking buiten noodzakelijke functies).
+- **Transparantie over databronnen** (waar komen de meldingen vandaan?).
+
+### 🔹 Contentbeheer
+👉 Ontwikkel een model voor:
+
+- **Automatische data-inname** uit betrouwbare bronnen.
+- **Handmatige kwaliteitscontrole** waar nodig (bijvoorbeeld bij nieuwe regio's of onbekende meldingen).
+
 ## 🔍 Troubleshooting
 
 ### Veelvoorkomende Problemen
