@@ -1,4 +1,4 @@
-# World View News 🌍
+# Yaro 🌍
 
 Een interactieve nieuwsapplicatie die lokale gebeurtenissen en meldingen toont op een interactieve kaart. Gebruikers kunnen zoeken naar specifieke steden, de zoekradius aanpassen, en real-time meldingen bekijken in hun omgeving.
 
