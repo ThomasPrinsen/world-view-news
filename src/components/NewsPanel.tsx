@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, Flame, Thermometer, MessageCircle } from 'lucide-react';
+import { AlertTriangle, Flame, Thermometer, MessageCircle, Bot } from 'lucide-react';
 import { NewsArticle } from '@/services/NewsService';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -89,8 +89,8 @@ const NewsPanel: React.FC<NewsPanelProps> = ({ news, isLoading, location, radius
 
       <div className="p-4 border-t border-gray-200">
         <Button className="w-full bg-green-500 hover:bg-green-600 text-white rounded-full">
-          <MessageCircle className="h-4 w-4 mr-2" />
-          Chat met een local 💬
+          <Bot className="h-4 w-4 mr-2" />
+          Chat met Trippy 🤖
         </Button>
       </div>
     </div>
