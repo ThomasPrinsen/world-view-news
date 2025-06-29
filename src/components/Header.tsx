@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch, isLoading = false }) => {
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         <div className="flex items-center space-x-8">
           <h1 className="text-2xl font-bold text-orange-500 cursor-pointer" onClick={() => navigate('/')}>
-            Yaro
+            TripAlert
           </h1>
           
           <form onSubmit={handleSubmit} className="relative">
